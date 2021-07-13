@@ -11,23 +11,30 @@ public class Main {
 	// write your code here
         // Animal CLASSi OBJECTide (instantside) loomine,
 
-        Animal kass = new Animal(70, 2, "Miisu", false, false, AnimalType.KASS);
-        Animal koer = new Animal(80, 1, "Muri", true, false, AnimalType.KOER);
-        Animal tiiger = new Animal(140, 5, "King", false, false, AnimalType.TIIGER);
-        Animal rott = new Animal(10, 1, "Sipsi", false, false, AnimalType.ROTT);
+
+        Mammal kass = new Mammal(70, 2, "Miisu", false, false, MammalType.KASS);
+        Mammal koer = new Mammal(80, 1, "Muri", true, false, MammalType.KOER);
+        Mammal tiiger = new Mammal(140, 5, "King", false, false, MammalType.TIIGER);
+        Mammal rott = new Mammal(10, 1, "Sipsi", false, false, MammalType.ROTT);
 
         // main method läheb alati esimesena käima
         // ülal kass, koer jne on OBJECT, ehk instants CLASSist. Viitab OBJECT ORIENTED PROGRAMMINGule
         // KLASS on nagu andmemudel, ta kohustab väärtusi vastu võtma (määratud klassi loomisel)
         // instantsi (OBJECTi) loomisel peab alati kohustuslikud väärtused initsieerima
 
-        rott.addChild(new Animal(2, 0, "N/A", true, false, AnimalType.ROTT));
+        rott.addChild(new Mammal(2, 0, "Sipsi II", true, false, MammalType.ROTT));
+        rott.addChild(new Mammal(3, 1, "Rott1", true, false, MammalType.ROTT));
+        rott.addChild(new Mammal(4, 2, "Rott2", true, false, MammalType.ROTT));
+        rott.addChild(new Mammal(5, 3, "Rott3", true, false, MammalType.ROTT));
+        rott.addChild(new Mammal(6, 4, "Rott4", true, false, MammalType.ROTT));
+
+        rott.printOneChild();
 
         kass.changeToSold(); // siin on void, kuna pole vasakule poole muutujasse midagi panna
         koer.changeToSold();
         kass.increaseAge();
         koer.increaseAge();
-        rott.changePrice(20);
+        rott.setPrice(20);
 
         int koerPrice = koer.getPrice(); // siin on mingi tagastus (funktsiooni sees on return), mis pannakse vasakule)
         int kassPrice = kass.getPrice();
@@ -55,14 +62,14 @@ public class Main {
 
         // List ja ArrayList importida
 
-        List<Animal> koikLoomad = new ArrayList<Animal>();
+        List<Animal> koikLoomad = new ArrayList<>();
         koikLoomad.add(kass);
         koikLoomad.add(koer);
         koikLoomad.add(tiiger);
         koikLoomad.add(rott);
 
 
-        List<Bird> koikLinnud = new ArrayList<Bird>();
+        List<Animal> koikLinnud = new ArrayList<>();
         koikLinnud.add(papagoi);
         koikLinnud.add(ookull);
         koikLinnud.add(tihane);
@@ -73,7 +80,7 @@ public class Main {
             koguSumma += loom.getPrice();
         }
 
-        for (Bird lind:koikLinnud) {
+        for (Animal lind:koikLinnud) {
             koguSumma += lind.getPrice();
         }
         System.out.println("Kõikide loomade ostmiseks kogusumma: "+koguSumma);
