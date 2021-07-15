@@ -65,30 +65,41 @@ public class Mammal extends Animal {
 
             String childName = null;
             while (childName == null) {
-                System.out.println("Ütle lapse number millist soovid: ");
-                String input = scanner.nextLine();
-                try {
-                    int i = Integer.parseInt(input);
-                    childName = children.get(i - 1).getName();
-                    System.out.println("Valisid lapse: " + childName);
-                } catch (NumberFormatException e) {
-                    System.out.println("Error: Valisid numbri asemel tähe!");
-                } catch (IndexOutOfBoundsException e) {
-                    System.out.println("Error: Valisid vale numbri!");
-                }
+                childName = getChildName(scanner, childName);
             }
 
         }
 
     }
 
-        public void addChild(Mammal child) {
+    // parem on teha funktsioonid juppideks, kui need lähevad üle ~30 rea (loetavus halveneb)
+
+    private String getChildName(Scanner scanner, String childName) {
+        System.out.println("Ütle lapse number millist soovid: ");
+        String input = scanner.nextLine();
+        try {
+            int i = Integer.parseInt(input);
+            childName = children.get(i - 1).getName();
+            System.out.println("Valisid lapse: " + childName);
+        } catch (NumberFormatException e) {
+            System.out.println("Error: Valisid numbri asemel tähe!");
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("Error: Valisid vale numbri!");
+        }
+        return childName;
+    }
+
+    public void addChild(Mammal child) {
         if (this.isPuppy) {
             System.out.println("Tegemist on kutsikaga, lapsi lisada ei saa!");
         }
         else {
             this.children.add(child);
         }
+    }
+
+    public MammalType getMammalType() {
+        return mammalType;
     }
 
     // kui toStringi ei ole, siis prindib ainult mälukoha välja
@@ -102,6 +113,7 @@ public class Mammal extends Animal {
                 ", isSold=" + isSold() +
                 ", birthYear=" + birthYear +
                 ", animalType=" + mammalType +
+                ", animalType=" + children +
                 '}';
     }
 }

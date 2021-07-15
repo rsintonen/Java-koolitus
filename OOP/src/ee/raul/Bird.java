@@ -16,14 +16,19 @@ public class Bird extends Animal {
         this.birdColor = birdColor;
     }
 
-
-
     public BirdColor getBirdColor() {
         return birdColor;
     }
 
     public void setBirdColor(BirdColor birdColor) {
         this.birdColor = birdColor;
+    }
+
+    public void increaseBirdAge() throws Exception {
+        increaseAgeByOne();
+        if (getAge() > 50) {
+            throw new Exception("Vanus läks linnul üle 50");
+        }
     }
 
     @Override
